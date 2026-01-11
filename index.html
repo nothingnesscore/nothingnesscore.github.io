@@ -15,7 +15,7 @@
 
 <style>
 :root{
-    --bg:#0b0a12;
+    --bg: radial-gradient(circle at top, #1b1635 0%, #0b0a12 60%);
     --card:#141220;
     --text:#e6e6f0;
     --muted:#9aa0b5;
@@ -27,6 +27,7 @@ body{
     margin:0;
     font-family: system-ui, sans-serif;
     background:var(--bg);
+    background-attachment: fixed;
     color:var(--text);
 }
 
@@ -41,11 +42,26 @@ h1,h2,h3{color:white;}
 a{color:var(--accent); text-decoration:none;}
 
 .card{
-    background:var(--card);
-    border:1px solid var(--border);
-    border-radius:10px;
-    padding:28px;
-    margin-bottom:32px;
+    background: linear-gradient(180deg, #16132b, #121024);
+    border:1px solid rgba(107,76,255,0.15);
+    border-radius:14px;
+    padding:32px;
+    margin-bottom:36px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.35);
+}
+
+.card + .card{
+    position: relative;
+}
+
+.card + .card::before{
+    content:"";
+    position:absolute;
+    top:-18px;
+    left:30%;
+    width:40%;
+    height:1px;
+    background:linear-gradient(to right, transparent, #6b4cff55, transparent);
 }
 
 .tag{
@@ -79,6 +95,66 @@ footer{
     margin-top:80px;
     font-size:.9em;
 }
+
+p, li{
+    line-height:1.7;
+}
+
+/* Smooth global motion */
+*{
+    transition: color .25s ease, background .25s ease, border .25s ease, box-shadow .25s ease, transform .25s ease;
+}
+
+/* Card hover – subtle lift */
+.card:hover{
+    transform: translateY(-4px);
+    box-shadow: 0 18px 40px rgba(0,0,0,0.45);
+}
+
+/* Button hover */
+.btn-primary{
+    display:inline-block;
+    background:var(--accent);
+    color:white;
+    padding:12px 22px;
+    border-radius:8px;
+    font-weight:600;
+    box-shadow: 0 6px 18px rgba(107,76,255,0.25);
+}
+
+.btn-primary:hover{
+    transform: scale(1.04);
+    box-shadow: 0 10px 28px rgba(107,76,255,0.45);
+}
+
+
+/* Tag hover */
+.tag:hover{
+    background:#2a2555;
+    transform:scale(1.05);
+}
+
+/* Links */
+a:hover{
+    text-shadow: 0 0 8px rgba(107,76,255,0.5);
+}
+
+@keyframes fadeIn{
+    from{opacity:0; transform:translateY(20px);}
+    to{opacity:1; transform:none;}
+}
+
+main > *{
+    opacity:0;
+    animation: fadeIn .6s ease both;
+}
+
+main > *:nth-of-type(odd){
+    animation-delay:.15s;
+}
+main > *:nth-of-type(even){
+    animation-delay:.25s;
+}
 </style>
 </head>
 
@@ -88,7 +164,13 @@ footer{
 
 <div class="hero">
 <h1>Circle6</h1>
-<p class="subtitle">M.Sc. Clinical Psychology • Tutor • Person-Centred Counsellor</p>
+<p class="subtitle">
+M.Sc. Clinical Psychology · Academic Tutor · Person-Centred Counsellor
+</p>
+<p style="color:var(--muted); max-width:600px;">
+Private practice focused on learning, emotional clarity, and psychological support.
+</p>
+
 </div>
 
 <div class="card">
@@ -101,6 +183,16 @@ My approach is analytical, calm, and grounded in humanistic psychology.
 
 <div class="card">
 <div class="section-title">Services</div>
+
+<div class="card">
+<div class="section-title">Who I Work With</div>
+<ul>
+<li>Students struggling with exams, motivation, or academic stress</li>
+<li>Individuals experiencing anxiety, low mood, or confusion</li>
+<li>People seeking self-understanding rather than diagnosis</li>
+</ul>
+</div>
+
 
 <h3>Academic Tuition</h3>
 <div>
@@ -131,16 +223,12 @@ self-exploration, and psychological clarity.
 Schedule tuition or counselling sessions through Picktime.
 </p>
 
+<p style="color:var(--muted); max-width:600px;">
+Choose a time that works for you. First sessions are exploratory and confidential.
+</p>
+
 <p>
-<a href="https://www.picktime.com/bhairavwc" target="_blank"
-style="
-display:inline-block;
-background:var(--accent);
-color:white;
-padding:12px 22px;
-border-radius:8px;
-font-weight:600;
-">
+<a class="btn-primary" href="https://www.picktime.com/bhairavwc" target="_blank">
 Open Booking Page
 </a>
 </p>
@@ -169,7 +257,7 @@ Articles on:
 <li>Self-understanding</li>
 </ul>
 <p>
-<a href="#">Visit blog</a>
+<a href="/blog">Visit blog</a>
 </p>
 </div>
 
@@ -179,7 +267,7 @@ Articles on:
 Downloadable notes, exam guides, and reading lists for students.
 </p>
 <p>
-<a href="#">Access materials</a>
+<a href="/materials">Access materials</a>
 </p>
 </div>
 
@@ -194,20 +282,19 @@ Future additions: logos, diagrams, and visual psychology resources.
 </p>
 </div>
 
-<div class="card">
-<div class="section-title">Ethical Notice</div>
-<p>
-Counselling here is not a substitute for psychiatric or clinical treatment.  
-If you experience severe distress, seek a licensed mental-health professional.
-</p>
+<div class="card" style="display:flex; flex-wrap:wrap; gap:40px; justify-content:space-between;">
+<div style="max-width:400px;">
+<div class="section-title">Contact</div>
+<p><strong>yourname@email.com</strong></p>
 </div>
 
-<div class="card">
-<div class="section-title">Contact</div>
+<div style="max-width:400px;">
+<div class="section-title">Notice</div>
 <p>
-Email:
+Non-medical, non-diagnostic counselling only.  
+For emergencies or severe symptoms, consult a licensed professional.
 </p>
-<p><strong>yourname@email.com</strong></p>
+</div>
 </div>
 
 <footer>
