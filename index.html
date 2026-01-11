@@ -186,12 +186,12 @@ main > *:nth-of-type(even){
 }
 
 @keyframes ambientBreath{
-    0%{filter: brightness(1) saturate(1)}
-    50%{filter: brightness(1.05) saturate(1.1)}
-    100%{filter: brightness(1) saturate(1)}
+    0%{opacity:1}
+    50%{opacity:.985}
+    100%{opacity:1}
 }
 
-body{
+main{
     animation: ambientBreath 18s ease-in-out infinite;
 }
 
