@@ -15,7 +15,11 @@
 
 <style>
 :root{
-    --bg: radial-gradient(circle at top, #1b1635 0%, #0b0a12 60%);
+    --bg:
+        radial-gradient(circle at 20% 10%, rgba(107,76,255,.15), transparent 40%),
+        radial-gradient(circle at 80% 30%, rgba(50,40,120,.25), transparent 45%),
+        radial-gradient(circle at 50% 90%, rgba(20,15,60,.6), transparent 50%),
+        #0b0a12;
     --card:#141220;
     --text:#e6e6f0;
     --muted:#9aa0b5;
@@ -193,7 +197,11 @@ main{
         transparent 40%
     );
     opacity:.6;
-    transition: opacity .3s ease;
+    transition:
+        opacity .3s ease,
+        background-position .25s ease;
+    background-size: 200% 200%;
+    background-position: var(--x,50%) var(--y,50%);
     pointer-events:none;
 }
 
