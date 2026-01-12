@@ -27,7 +27,6 @@ body{
     margin:0;
     font-family: system-ui, sans-serif;
     background:var(--bg);
-    background-attachment: fixed;
     color:var(--text);
 }
 
@@ -42,28 +41,44 @@ h1,h2,h3{color:white;}
 a{color:var(--accent); text-decoration:none;}
 
 .card{
-    background: linear-gradient(180deg, #16132b, #121024);
-    border:1px solid rgba(107,76,255,0.15);
+    position: relative;
+    overflow: hidden;
+
+    background: linear-gradient(
+        180deg,
+        rgba(30,25,60,.88),
+        rgba(18,16,36,.95)
+    );
+
+    border: 1px solid rgba(255,255,255,0.06);
     border-radius:14px;
     padding:32px;
     margin-bottom:36px;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.35);
+
+    box-shadow:
+        0 10px 30px rgba(0,0,0,0.45),
+        inset 0 1px 0 rgba(255,255,255,0.05);
+}
+
+.card::before{
+    content:"";
+    position:absolute;
+    inset:0;
+    background: inherit;
+    filter: blur(12px);
+    opacity:.7;
+    z-index:0;
+    pointer-events:none;
+}
+
+.card > *{
+    position:relative;
+    z-index:1;
 }
 
 .card + .card{
     position: relative;
 }
-
-.card + .card::before{
-    content:"";
-    position:absolute;
-    top:-18px;
-    left:30%;
-    width:40%;
-    height:1px;
-    background:linear-gradient(to right, transparent, #6b4cff55, transparent);
-}
-
 .tag{
     display:inline-block;
     background:#1f1b33;
@@ -157,12 +172,6 @@ main > *:nth-of-type(even){
 }
 
 /* Liquid glass base */
-.card{
-    border: 1px solid rgba(255,255,255,0.06);
-    box-shadow:
-        0 8px 30px rgba(0,0,0,0.4),
-        inset 0 1px 0 rgba(255,255,255,0.05);
-}
 
 @keyframes ambientBreath{
     0%{opacity:1}
@@ -172,11 +181,6 @@ main > *:nth-of-type(even){
 
 main{
     animation: ambientBreath 18s ease-in-out infinite;
-}
-
-.card{
-    position: relative;
-    overflow: hidden;
 }
 
 .card::after{
