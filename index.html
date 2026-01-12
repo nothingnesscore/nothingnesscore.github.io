@@ -45,6 +45,9 @@ h1,h2,h3{color:white;}
 a{color:var(--accent); text-decoration:none;}
 
 .card{
+    --x: 50%;
+    --y: 50%;
+
     position: relative;
     overflow: hidden;
 
@@ -194,7 +197,7 @@ main{
     background: radial-gradient(
         circle at var(--x,50%) var(--y,50%),
         rgba(107,76,255,0.25),
-        transparent 40%
+        transparent 55%
     );
     opacity:.6;
     transition:
